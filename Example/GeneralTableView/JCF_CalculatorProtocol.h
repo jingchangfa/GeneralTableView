@@ -13,10 +13,12 @@
  * tableNumberOfSections  返回Section数目
  * tableNumberOfRowsInSection 返回每Section的row
  * tableModelByIndex 返回indexpatch 对应的model
+ * tableSectionModelBySection 返回section 对应的model
  */
  
 - (NSInteger)tableNumberOfSections;
 - (NSInteger)tableNumberOfRowsInSection:(NSInteger)section;
 - (NSObject *)tableModelByIndex:(NSIndexPath *)indexPath;
+- (NSObject *)tableSectionModelBySection:(NSInteger)section;
 
 @end

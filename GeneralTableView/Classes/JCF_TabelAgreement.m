@@ -26,6 +26,7 @@
 }
 - (void)reloadDateByArray:(NSMutableArray *)datasArray{
     self.dataSourceArray = datasArray;
+    self.calculator.dataSourceArray = datasArray;
     [self.tableView reloadData];
 }
 #pragma mark  Delegate
@@ -63,21 +64,21 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if(self.cellHeadViewHeightInSectionBlock)return self.cellHeadViewHeightInSectionBlock(section);
+    if(self.cellHeadViewHeightInSectionBlock)return self.cellHeadViewHeightInSectionBlock(section,[self.calculator tableSectionModelBySection:section]);
     return 0.0f;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    if(self.cellHeadeViewInSectionBlock)return self.cellHeadeViewInSectionBlock(section);
+    if(self.cellHeadeViewInSectionBlock)return self.cellHeadeViewInSectionBlock(section,[self.calculator tableSectionModelBySection:section]);
     return nil;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    if(self.cellFootViewHeightInSectionBlock)return self.cellFootViewHeightInSectionBlock(section);
+    if(self.cellFootViewHeightInSectionBlock)return self.cellFootViewHeightInSectionBlock(section,[self.calculator tableSectionModelBySection:section]);
     return 0.0f;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    if(self.cellFootViewInSectionBlock)return self.cellFootViewInSectionBlock(section);
+    if(self.cellFootViewInSectionBlock)return self.cellFootViewInSectionBlock(section,[self.calculator tableSectionModelBySection:section]);
     return nil;
 }
 

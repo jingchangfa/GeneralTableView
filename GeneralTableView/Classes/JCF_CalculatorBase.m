@@ -37,7 +37,12 @@
     }
     return self.dataSourceArray[indexPath.section][indexPath.row];
 }
-
+- (NSObject *)tableSectionModelBySection:(NSInteger)section{
+    if([self isOneSelection:self.dataSourceArray]){
+        return self.dataSourceArray;
+    }
+    return self.dataSourceArray[section];
+}
 
 //辅助方法
 - (BOOL)isOneSelection:(NSArray *)models{//是否一个组
