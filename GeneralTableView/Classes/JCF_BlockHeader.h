@@ -26,7 +26,7 @@ typedef float(^CellHeightBlock)(NSObject *model,NSIndexPath *indexPath);//JCF_Ta
 //根据index获取model的逻辑, 不写则按照 默认的来
 typedef NSObject*(^ModelByIndex)(NSArray *models,NSIndexPath *indexPath);
 //返回 头尾试图的block
-typedef UIView *(^HeaderFootViewBySection)(NSInteger section,NSObject *model);
+typedef void(^HeaderFootViewBySection)(UITableViewHeaderFooterView *view,NSInteger section,NSObject *model);
 //返回头尾试图的高度
 typedef float(^HeaderFootViewHeightBlock)(NSInteger section,NSObject *model);
 

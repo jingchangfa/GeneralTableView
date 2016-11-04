@@ -6,7 +6,7 @@
 //  Copyright © 2016年 jing. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 #import "JCF_CalculatorProtocol.h"
 
 /*负责计算

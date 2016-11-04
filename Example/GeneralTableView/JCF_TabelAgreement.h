@@ -27,6 +27,9 @@
  */
 //*******此方法要在[view addSubview:JCF_TabelAgreement.tableView];之前********
 - (void)addCellClass:(Class)cellClass ByModelClass:(Class)modelClass;
+- (void)addFootViewClass:(Class)footClass ByModelClass:(Class)modelClass;
+- (void)addHeadViewClass:(Class)headClass ByModelClass:(Class)modelClass;
+
 
 - (void)reloadDateByArray:(NSMutableArray *)datasArray;
 
@@ -81,6 +84,8 @@
  * 储存形势：@{@"modelClass":@"cellClass"}
  */
 @property (nonatomic,strong)NSMutableDictionary *classDictionary;
+@property (nonatomic,strong)NSMutableDictionary *footDictionary;
+@property (nonatomic,strong)NSMutableDictionary *headDictionary;
 
 
 

@@ -7,6 +7,7 @@
 //
 
 #import "JCF_CalculatorBase.h"
+#import <UIKit/UIKit.h>
 
 @implementation JCF_CalculatorBase
 - (instancetype)initWithDataSource:(NSMutableArray *)modelsArray{
