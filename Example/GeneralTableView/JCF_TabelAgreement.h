@@ -23,6 +23,8 @@
 /**
  * 添加cell 和model的对照关系
  * 不实现此方法 会导致 创建的cell总会是 uitableviewcell
+ * 添加头 和model的对照关系
+ * 添加尾 和model的对照关系
  */
 //*******此方法要在[view addSubview:JCF_TabelAgreement.tableView];之前********
 - (void)addCellClass:(Class)cellClass ByModelClass:(Class)modelClass;

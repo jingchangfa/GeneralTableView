@@ -41,7 +41,6 @@
     [self.tableViewManager addHeadViewClass:[HeaderView class] ByModelClass:[Day class]];
 
     
-    
     self.tableViewManager.dataSourceArray = self.holidayModel.detail;
     [self.tableViewManager setTableviewInitBlock:^(UITableView *tablewView) {
         //添加头尾 上啦 下啦 啥的

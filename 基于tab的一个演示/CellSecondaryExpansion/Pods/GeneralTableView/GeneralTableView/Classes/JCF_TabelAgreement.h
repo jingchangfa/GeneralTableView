@@ -6,7 +6,6 @@
 //  Copyright © 2016年 jing. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "JCF_CalculatorBase.h"
 #import "JCF_BlockHeader.h"
@@ -24,9 +23,14 @@
 /**
  * 添加cell 和model的对照关系
  * 不实现此方法 会导致 创建的cell总会是 uitableviewcell
+ * 添加头 和model的对照关系
+ * 添加尾 和model的对照关系
  */
 //*******此方法要在[view addSubview:JCF_TabelAgreement.tableView];之前********
 - (void)addCellClass:(Class)cellClass ByModelClass:(Class)modelClass;
+- (void)addFootViewClass:(Class)footClass ByModelClass:(Class)modelClass;
+- (void)addHeadViewClass:(Class)headClass ByModelClass:(Class)modelClass;
+
 
 - (void)reloadDateByArray:(NSMutableArray *)datasArray;
 
@@ -60,9 +64,14 @@
  * cellFootViewInSectionBlock    设置cell的组尾视图 (选择实现) nil
  * cellHeadViewHeightInSectionBlock 组头视图高 (选择实现) 0.0f
  * cellFootViewHeightInSectionBlock 组尾视图高 (选择实现) 0.0f
+ * cellInitBlcok     cell初始化的时候调用一次，重用池不走
+ * headerViewInitBlcok  headerView初始化的时候调用一次，重用池不走
+ * footViewInitBlcok    footView初始化的时候调用一次，重用池不走
  */
 @property (nonatomic,copy)TableviewInitBlock tableviewInitBlock;
 @property (nonatomic,copy)CellBlock createdCellBlock;
+@property (nonatomic,copy)CellBlock cellInitBlcok;
+
 @property (nonatomic,copy)CellBlock didSelectedCellBlock;
 @property (nonatomic,copy)CellHeightBlock cellHeightBlock;
 @property (nonatomic,copy)HeaderFootViewBySection cellHeadeViewInSectionBlock;
@@ -71,6 +80,8 @@
 @property (nonatomic,copy)HeaderFootViewHeightBlock cellHeadViewHeightInSectionBlock;
 @property (nonatomic,copy)HeaderFootViewHeightBlock cellFootViewHeightInSectionBlock;
 
+@property (nonatomic,copy)HeaderFootViewBySection headerViewInitBlcok;
+@property (nonatomic,copy)HeaderFootViewBySection footViewInitBlcok;
 
 
 
@@ -81,6 +92,8 @@
  * 储存形势：@{@"modelClass":@"cellClass"}
  */
 @property (nonatomic,strong)NSMutableDictionary *classDictionary;
+@property (nonatomic,strong)NSMutableDictionary *footDictionary;
+@property (nonatomic,strong)NSMutableDictionary *headDictionary;
 
 
 
@@ -93,4 +106,7 @@
 -(void)setCellFootViewInSectionBlock:(HeaderFootViewBySection)cellFootViewInSectionBlock;
 -(void)setCellHeadViewHeightInSectionBlock:(HeaderFootViewHeightBlock)cellHeadViewHeightInSectionBlock;
 -(void)setCellFootViewHeightInSectionBlock:(HeaderFootViewHeightBlock)cellFootViewHeightInSectionBlock;
+-(void)setCellInitBlcok:(CellBlock)cellInitBlcok;
+-(void)setHeaderViewInitBlcok:(HeaderFootViewBySection)headerViewInitBlcok;
+-(void)setFootViewInitBlcok:(HeaderFootViewBySection)footViewInitBlcok;
 @end
