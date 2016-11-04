@@ -1,8 +1,7 @@
-# UniversaSlimpleTableview
-tableview的一个简单的封装，一句代码创建tableview不用每次都实现坑爹的delegate
+# GeneralTableView
+tableview的一个简单的封装，不用每次都实现坑爹的delegate
 
-# 添加了组头尾视图的支持，新增reloadDateByArray 方法用来reloaddata
-# 添加了对多种cell的支持，重写了架构，现在的看起来顺眼多了，小伙伴们可以对照前后，感受一下区别
+# 添加了对多种cell的支持
 ### pod
 ```
 pod 'GeneralTableView', '~> 0.1.0'
@@ -55,8 +54,9 @@ pod search GeneralTableView
     array = [NSMutableArray arrayWithArray:@[[People PeopleAll:10],[People PeopleAll:10]]];
     [self.tabNewanager reloadDateByArray:array];
 ```
+### --------------------分割线----------------------------
+
 [23种设计模式笔记(未完)_简书的地址](http://www.jianshu.com/users/bb97e9208c57/latest_articles)
 ### 虽然用的java 思想都是一样的
-### --------------------分割线----------------------------
 
 
