@@ -1,0 +1,1 @@
+../../../GeneralTableView/GeneralTableView/Classes/JCF_CalculatorBase.h
