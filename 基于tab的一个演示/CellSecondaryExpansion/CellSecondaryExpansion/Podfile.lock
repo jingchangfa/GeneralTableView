@@ -1,0 +1,10 @@
+PODS:
+  - GeneralTableView (0.1.0)
+
+DEPENDENCIES:
+  - GeneralTableView (~> 0.1.0)
+
+SPEC CHECKSUMS:
+  GeneralTableView: 21c3e928e20dad18bca60f886a313e8ecbb07342
+
+COCOAPODS: 0.39.0

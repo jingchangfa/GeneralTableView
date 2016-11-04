@@ -11,6 +11,7 @@
 #import "Holiday.h"
 #import "CustomCell.h"
 #import "Calculator.h"
+#import "HeaderView.h"
 
 @interface ViewController ()
 @property (nonatomic,strong)Holiday *holidayModel;
@@ -37,6 +38,10 @@
     self.tableViewManager.tableFrame = CGRectMake(0, 20, 375, 657);
     self.tableViewManager.calculator = self.calculator;
     [self.tableViewManager addCellClass:[CustomCell class] ByModelClass:[Hour class]];
+    [self.tableViewManager addHeadViewClass:[HeaderView class] ByModelClass:[Day class]];
+
+    
+    
     self.tableViewManager.dataSourceArray = self.holidayModel.detail;
     [self.tableViewManager setTableviewInitBlock:^(UITableView *tablewView) {
         //添加头尾 上啦 下啦 啥的
@@ -58,15 +63,20 @@
     [self.tableViewManager setCellHeadViewHeightInSectionBlock:^float(NSInteger section,NSObject *model) {
         return 40;
     }];
-    [self.tableViewManager setCellHeadeViewInSectionBlock:^UIView *(NSInteger section,NSObject *model) {
+    [self.tableViewManager setCellHeadeViewInSectionBlock:^(UITableViewHeaderFooterView *view, NSInteger section, NSObject *model) {
         Day *day = (Day *)model;
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 375, 40)];
-        label.text = day.howDay;
-        label.textAlignment = NSTextAlignmentCenter;
-        label.backgroundColor = [UIColor grayColor];
-        label.tag = section;
-        [weakSelf addTapByLabel:label];
-        return label;
+        HeaderView *headView = (HeaderView *)view;
+        headView.frame = CGRectMake(0, 0, 375, 40);
+        headView.label.frame = headView.bounds;
+        headView.label.text = day.howDay;
+        headView.label.textAlignment = NSTextAlignmentCenter;
+        headView.label.backgroundColor = [UIColor grayColor];
+        headView.label.tag = section;
+    }];
+    [self.tableViewManager setHeaderViewInitBlcok:^(UITableViewHeaderFooterView *view, NSInteger section, NSObject *model) {
+        //来添加点击事件之类的方法
+        HeaderView *headView = (HeaderView *)view;
+        [weakSelf addTapByLabel:headView.label];
     }];
     
     [self.view addSubview:self.tableViewManager.tableView];

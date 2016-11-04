@@ -70,6 +70,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:indentifulString];
     if (!cell) {
         cell = [[[self tableCellClassByModel:model] alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:indentifulString];
+        if (self.cellInitBlcok) self.cellInitBlcok(model,cell,indexPath);
     }
     //设置cell
     if (self.createdCellBlock) self.createdCellBlock(model,cell,indexPath);
@@ -93,6 +94,9 @@
     UITableViewHeaderFooterView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:indentifulString];
     if (!headerView) {
         headerView = [[[self tableHeadClassByModel:model] alloc] initWithReuseIdentifier:indentifulString];
+        if (self.headerViewInitBlcok) {
+            self.headerViewInitBlcok(headerView,section,[self.calculator tableSectionModelBySection:section]);
+        }
     }
     if(self.cellHeadeViewInSectionBlock) self.cellHeadeViewInSectionBlock(headerView,section,[self.calculator tableSectionModelBySection:section]);
     return headerView;
@@ -109,6 +113,9 @@
     UITableViewHeaderFooterView *footView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:indentifulString];
     if (!footView) {
         footView = [[[self tableFootClassByModel:model] alloc] initWithReuseIdentifier:indentifulString];
+        if (self.footViewInitBlcok) {
+            self.footViewInitBlcok(footView,section,[self.calculator tableSectionModelBySection:section]);
+        }
     }
     if(self.cellHeadeViewInSectionBlock) self.cellHeadeViewInSectionBlock(footView,section,[self.calculator tableSectionModelBySection:section]);
     return footView;
