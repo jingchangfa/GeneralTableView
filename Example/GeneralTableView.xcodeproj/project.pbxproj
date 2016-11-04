@@ -14,6 +14,7 @@
 		3F318F481DCC2B85003BD421 /* JCF_TableViewDelegateAndDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F318F451DCC2B85003BD421 /* JCF_TableViewDelegateAndDataSource.m */; };
 		3F318F4E1DCC2BB4003BD421 /* People.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F318F4B1DCC2BB4003BD421 /* People.m */; };
 		3F318F4F1DCC2BB4003BD421 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F318F4D1DCC2BB4003BD421 /* CustomCell.m */; };
+		3F318FA51DCCA35A003BD421 /* JCF_ModelViewMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F318FA41DCCA35A003BD421 /* JCF_ModelViewMapping.m */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -57,6 +58,8 @@
 		3F318F4B1DCC2BB4003BD421 /* People.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = People.m; sourceTree = "<group>"; };
 		3F318F4C1DCC2BB4003BD421 /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
 		3F318F4D1DCC2BB4003BD421 /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
+		3F318FA31DCCA35A003BD421 /* JCF_ModelViewMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCF_ModelViewMapping.h; sourceTree = "<group>"; };
+		3F318FA41DCCA35A003BD421 /* JCF_ModelViewMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCF_ModelViewMapping.m; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* GeneralTableView_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeneralTableView_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -116,6 +119,8 @@
 				3F318F3A1DCC2B5E003BD421 /* JCF_CalculatorProtocol.h */,
 				3F318F3B1DCC2B5E003BD421 /* JCF_CalculatorBase.h */,
 				3F318F3C1DCC2B5E003BD421 /* JCF_CalculatorBase.m */,
+				3F318FA31DCCA35A003BD421 /* JCF_ModelViewMapping.h */,
+				3F318FA41DCCA35A003BD421 /* JCF_ModelViewMapping.m */,
 			);
 			name = FrameWork;
 			sourceTree = "<group>";
@@ -336,6 +341,7 @@
 				6003F59E195388D20070C39A /* JCFAppDelegate.m in Sources */,
 				3F318F3D1DCC2B5E003BD421 /* JCF_TabelAgreement.m in Sources */,
 				6003F5A7195388D20070C39A /* JCFViewController.m in Sources */,
+				3F318FA51DCCA35A003BD421 /* JCF_ModelViewMapping.m in Sources */,
 				3F318F4E1DCC2BB4003BD421 /* People.m in Sources */,
 				3F318F4F1DCC2BB4003BD421 /* CustomCell.m in Sources */,
 				3F318F471DCC2B85003BD421 /* JCF_TableViewBaseCell.m in Sources */,

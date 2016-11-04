@@ -17,31 +17,15 @@
     return self;
 }
 - (void)addCellClass:(Class)cellClass ByModelClass:(Class)modelClass{
-    if (!self.classDictionary) {
-        self.classDictionary = [NSMutableDictionary dictionary];
-    }
-    NSString *modelClassString = NSStringFromClass(modelClass);
-    NSString *cellClassString = NSStringFromClass(cellClass);
-    self.classDictionary[modelClassString] = cellClassString;
+    [self.mapping addCellClass:cellClass ByModelClass:modelClass];
 }
 
 - (void)addFootViewClass:(Class)footClass ByModelClass:(Class)modelClass{
-    if (!self.footDictionary) {
-        self.footDictionary = [NSMutableDictionary dictionary];
-    }
-    NSString *modelClassString = NSStringFromClass(modelClass);
-    NSString *footClassString = NSStringFromClass(footClass);
-    self.footDictionary[modelClassString] = footClassString;
+    [self.mapping addFootViewClass:footClass ByModelClass:modelClass];
 }
 - (void)addHeadViewClass:(Class)headClass ByModelClass:(Class)modelClass{
-    if (!self.headDictionary) {
-        self.headDictionary = [NSMutableDictionary dictionary];
-    }
-    NSString *modelClassString = NSStringFromClass(modelClass);
-    NSString *headClassString = NSStringFromClass(headClass);
-    self.headDictionary[modelClassString] = headClassString;
+    [self.mapping addHeadViewClass:headClass ByModelClass:modelClass];
 }
-
 
 - (void)reloadDateByArray:(NSMutableArray *)datasArray{
     self.dataSourceArray = datasArray;
@@ -66,10 +50,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSObject *model = [self.calculator tableModelByIndex:indexPath];
-    NSString *indentifulString = [self indentifulByModel:model];
+    NSString *indentifulString = [self.mapping indentifulByModel:model];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:indentifulString];
     if (!cell) {
-        cell = [[[self tableCellClassByModel:model] alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:indentifulString];
+        cell = [[[self.mapping tableCellClassByModel:model] alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:indentifulString];
         if (self.cellInitBlcok) self.cellInitBlcok(model,cell,indexPath);
     }
     //设置cell
@@ -90,10 +74,10 @@
 //添加重用机制
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     NSObject *model = [self.calculator tableSectionModelBySection:section];
-    NSString *indentifulString = [NSString stringWithFormat:@"%@HeaderView",[self indentifulByModel:model]];
+    NSString *indentifulString = [NSString stringWithFormat:@"%@HeaderView",[self.mapping indentifulByModel:model]];
     UITableViewHeaderFooterView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:indentifulString];
     if (!headerView) {
-        headerView = [[[self tableHeadClassByModel:model] alloc] initWithReuseIdentifier:indentifulString];
+        headerView = [[[self.mapping tableHeadClassByModel:model] alloc] initWithReuseIdentifier:indentifulString];
         if (self.headerViewInitBlcok) {
             self.headerViewInitBlcok(headerView,section,[self.calculator tableSectionModelBySection:section]);
         }
@@ -109,10 +93,10 @@
 //添加重用机制
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     NSObject *model = [self.calculator tableSectionModelBySection:section];
-    NSString *indentifulString = [NSString stringWithFormat:@"%@FootView",[self indentifulByModel:model]];
+    NSString *indentifulString = [NSString stringWithFormat:@"%@FootView",[self.mapping indentifulByModel:model]];
     UITableViewHeaderFooterView *footView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:indentifulString];
     if (!footView) {
-        footView = [[[self tableFootClassByModel:model] alloc] initWithReuseIdentifier:indentifulString];
+        footView = [[[self.mapping tableFootClassByModel:model] alloc] initWithReuseIdentifier:indentifulString];
         if (self.footViewInitBlcok) {
             self.footViewInitBlcok(footView,section,[self.calculator tableSectionModelBySection:section]);
         }
@@ -121,46 +105,7 @@
     return footView;
 }
 
-#pragma mark  辅助方法
-- (Class)tableCellClassByModel:(NSObject *)model{
-    //根据model的class 找对应的 cell的class
-    if (!self.classDictionary) {
-        return [UITableViewCell class];
-    }
-    NSString *modelClassString = NSStringFromClass(model.class);
-    NSString *cellClassString = self.classDictionary[modelClassString];
-    if (!cellClassString) return [UITableViewCell class];
-    Class cellClass = NSClassFromString(cellClassString);
-    return cellClass;
-}
-- (Class)tableFootClassByModel:(NSObject *)model{
-    //根据model的class 找对应的 foot的class
-    if (!self.footDictionary) {
-        return [UITableViewHeaderFooterView class];
-    }
-    NSString *modelClassString = NSStringFromClass(model.class);
-    NSString *footClassString = self.footDictionary[modelClassString];
-    if (!footClassString) return [UITableViewHeaderFooterView class];
-    Class footClass = NSClassFromString(footClassString);
-    return footClass;
-}
-- (Class)tableHeadClassByModel:(NSObject *)model{
-    //根据model的class 找对应的 head的class
-    if (!self.headDictionary) {
-        return [UITableViewHeaderFooterView class];
-    }
-    NSString *modelClassString = NSStringFromClass(model.class);
-    NSString *headClassString = self.headDictionary[modelClassString];
-    if (!headClassString) return [UITableViewHeaderFooterView class];
-    Class headClass = NSClassFromString(headClassString);
-    return headClass;
-}
 
-
-- (NSString *)indentifulByModel:(NSObject *)model{
-    //根据model的class 生成cell的indentiful
-    return NSStringFromClass(model.class);
-}
 #pragma mark  SET
 -(void)setDataSourceArray:(NSMutableArray *)dataSourceArray{
     _dataSourceArray = dataSourceArray;
@@ -192,5 +137,11 @@
         _calculator = [[JCF_CalculatorBase alloc] initWithDataSource:self.dataSourceArray];
     }
     return _calculator;
+}
+-(JCF_ModelViewMapping *)mapping{
+    if (!_mapping) {
+        _mapping = [[JCF_ModelViewMapping alloc] init];
+    }
+    return _mapping;
 }
 @end

@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "JCF_CalculatorBase.h"
 #import "JCF_BlockHeader.h"
+#import "JCF_ModelViewMapping.h"
+
 /**
  * 可以对比之前和现在，理解一下设计模式，以及有啥优点
  * 版本2
@@ -20,6 +22,7 @@
 {
     UITableView *_tableView;
 }
+@property(nonatomic,strong)JCF_ModelViewMapping *mapping;
 /**
  * 添加cell 和model的对照关系
  * 不实现此方法 会导致 创建的cell总会是 uitableviewcell
@@ -30,7 +33,6 @@
 - (void)addCellClass:(Class)cellClass ByModelClass:(Class)modelClass;
 - (void)addFootViewClass:(Class)footClass ByModelClass:(Class)modelClass;
 - (void)addHeadViewClass:(Class)headClass ByModelClass:(Class)modelClass;
-
 
 - (void)reloadDateByArray:(NSMutableArray *)datasArray;
 
@@ -85,15 +87,6 @@
 
 
 
-/**
- * 此属性无需设置
- * 通过addCellClass添加内容
- * 为空则代表单一的cell
- * 储存形势：@{@"modelClass":@"cellClass"}
- */
-@property (nonatomic,strong)NSMutableDictionary *classDictionary;
-@property (nonatomic,strong)NSMutableDictionary *footDictionary;
-@property (nonatomic,strong)NSMutableDictionary *headDictionary;
 
 
 
