@@ -39,7 +39,6 @@
     self.tableViewManager.calculator = self.calculator;
     [self.tableViewManager addCellClass:[CustomCell class] ByModelClass:[Hour class]];
     [self.tableViewManager addHeadViewClass:[HeaderView class] ByModelClass:[Day class]];
-
     
     self.tableViewManager.dataSourceArray = self.holidayModel.detail;
     [self.tableViewManager setTableviewInitBlock:^(UITableView *tablewView) {
@@ -73,7 +72,7 @@
         headView.label.tag = section;
     }];
     [self.tableViewManager setHeaderViewInitBlcok:^(UITableViewHeaderFooterView *view, NSInteger section, NSObject *model) {
-        //来添加点击事件之类的方法
+        //，如果你不想在自定义view的init方法中添加的话，在此，添加点击事件之类的方法
         HeaderView *headView = (HeaderView *)view;
         [weakSelf addTapByLabel:headView.label];
     }];
