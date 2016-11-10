@@ -52,11 +52,17 @@
         CustomCell *cusCell = (CustomCell *)cell;
         cusCell.nameLabel.text = hour.text;
         cusCell.ageLabel.text = hour.time;
+        cusCell.height = [weakSelf.calculator getTheRowHeightByModel:hour];
+        [cusCell setBlock:^float(NSString *text) {
+            hour.text = text;
+            return [weakSelf.calculator getTheRowHeightByModel:hour];
+        }];
     }];
+    
     [self.tableViewManager setCellHeightBlock:^float(NSObject *model, NSIndexPath *indexPath) {
         Hour *hour = (Hour *)model;
         //你需要自己算
-        return [weakSelf.calculator getTheRowHeightByModel:hour];
+        return ([weakSelf.calculator getTheRowHeightByModel:hour]+10.0f);
     }];
     [self.tableViewManager setCellHeadViewHeightInSectionBlock:^float(NSInteger section,NSObject *model) {
         return 40;

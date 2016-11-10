@@ -32,6 +32,18 @@
 //获取cell的高度
 - (float)getTheRowHeightByModel:(Hour *)hour{
     //自己根据 数据计算
+    float height = [self stringHeightWithString:hour.text].height;
+    if (height<20) {
+        height = 20;
+    }
+    return height;
     return 40;
+}
+- (CGSize)stringHeightWithString:(NSString *)text{
+    UIFont *font = [UIFont systemFontOfSize:15 weight:0.1];
+    NSDictionary *dic = @{NSFontAttributeName:font};//输入的字体的大小
+    NSStringDrawingOptions options = NSStringDrawingUsesLineFragmentOrigin;
+    CGSize maxSize = CGSizeMake(100, 1000);
+    return [text boundingRectWithSize:maxSize options:options attributes:dic context:nil].size;
 }
 @end

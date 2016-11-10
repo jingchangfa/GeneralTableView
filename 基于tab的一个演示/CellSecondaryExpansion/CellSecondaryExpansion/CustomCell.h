@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+typedef float(^CellHeightBlcok)(NSString *text);
 
-@interface CustomCell : UITableViewCell
-@property (nonatomic,strong)UILabel *nameLabel;
+@interface CustomCell : UITableViewCell<UITextViewDelegate>
+@property (nonatomic,strong)UITextView *nameLabel;
 @property (nonatomic,strong)UILabel *ageLabel;
 
+@property (nonatomic,copy) CellHeightBlcok block;
+@property (nonatomic)float height;;
+
+-(void)setBlock:(CellHeightBlcok)block;
 @end
